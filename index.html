@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bình sai lưới mặt bằng</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef1ee;--fg:#18211d;--mut:#586760;--card:#fff;--line:#cfd8d2;--ac:#0f5f55;--acf:#fff;--err:#b3261e;--hl:#e3efe9}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101513;--fg:#e6ece8;--mut:#98a69e;--card:#18201c;--line:#2c3832;--ac:#58c4b3;--acf:#07130f;--err:#ff8a80;--hl:#1f2e28}}
+:root[data-theme="dark"]{--bg:#101513;--fg:#e6ece8;--mut:#98a69e;--card:#18201c;--line:#2c3832;--ac:#58c4b3;--acf:#07130f;--err:#ff8a80;--hl:#1f2e28}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:920px;margin:0 auto;padding:14px}
+h1{font-size:1.45rem;margin:.2em 0 .1em;letter-spacing:-.01em}
+h2{font-size:1.05rem;margin:0 0 .6em}
+.sub{color:var(--mut);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:3px}
+.hint{font-weight:400;color:var(--mut);display:block;font-size:.8rem}
+textarea,input,select{width:100%;font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px}
+textarea{min-height:150px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;white-space:pre}
+.par{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:400}
+.chk input{width:auto}
+button{font:inherit;font-weight:600;border-radius:8px;border:1px solid var(--ac);padding:10px 16px;cursor:pointer;background:transparent;color:var(--ac)}
+button.main{background:var(--ac);color:var(--acf)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+.sc{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.85rem}
+th,td{border-bottom:1px solid var(--line);padding:5px 8px;text-align:right;white-space:nowrap}
+th{background:var(--hl)}
+th:first-child,td:first-child{text-align:left}
+.err{color:var(--err);font-weight:600}
+.sum{background:var(--hl);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.sum div{margin:2px 0}
+.rep{background:#fff;color:#000;font-family:"Times New Roman",Times,serif;font-size:14px;padding:14px;border:1px solid var(--line);border-radius:6px;margin-bottom:12px}
+.rep h1{text-align:center;font-size:1.5rem;margin:.2em 0 .6em}
+.rep h3{text-align:center;font-size:1.05rem;margin:16px 0 6px}
+.rep table{width:auto;min-width:55%;margin:0 auto 6px;font-size:.92rem}
+.rep table.w{min-width:100%}
+.rep th,.rep td{border:1px solid #000;padding:2px 8px;text-align:center;background:#fff;color:#000}
+.rep th{font-weight:400}
+.rep td.l{text-align:left}
+.rep .ln{margin:2px 0}
+@media print{body{background:#fff}.card,.sub,.noprint{display:none!important}.rep{border:0;padding:0}main{padding:0}}
+.gr{min-width:330px;table-layout:fixed}
+.gr th,.gr td{border:1px solid var(--line);padding:0;text-align:center;white-space:normal}
+.gr .tt{background:var(--tt);color:var(--fg);padding:6px;font-size:1rem}
+.gr .hd{background:transparent;color:var(--hb);padding:5px 2px;font-size:.85rem}
+.gr input{border:0;border-radius:0;background:transparent;text-align:center;padding:7px 2px;min-width:0;font-size:.9rem}
+.gr input:focus-visible{outline-offset:-2px}
+:root{--tt:#f6c8a0;--hb:#1b5fb4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tt:#4a3320;--hb:#8ab8ff}}
+:root[data-theme="dark"]{--tt:#4a3320;--hb:#8ab8ff}
+</style></head><body><main>
+<h1 class="noprint">Bình sai lưới mặt bằng</h1>
+<p class="sub">Nguyễn Xuân Khoát-ĐH MĐC Hà nội</p>
+
+<section class="card"><h2>Số liệu</h2>
+<div class="grid"><div id="c"></div><div id="g"></div><div id="d"></div><div id="x"></div></div>
+<p class="hint">Nhập từng ô như Excel (Enter xuống dòng dưới). Có thể copy cả vùng từ Excel, bấm vào ô đầu tiên rồi dán: dữ liệu tự trải ra các ô. Bảng "Toạ độ gần đúng" chỉ cần khi máy không tự tính được.</p>
+</section>
+
+<section class="card"><h2>Tham số</h2>
+<div class="par">
+<div><label for="pn">Công trình</label><input id="pn" type="text"></div>
+<div><label for="pa">a (mm)</label><input id="pa" type="text" inputmode="decimal" value="2"></div>
+<div><label for="pb">b (mm/km)</label><input id="pb" type="text" inputmode="decimal" value="2"></div>
+<div><label for="pg">Sai số đo góc (")</label><input id="pg" type="text" inputmode="decimal" value="5"></div>
+<div><label for="ph">Độ cao TB H (m)</label><input id="ph" type="text" inputmode="decimal" value="0"></div>
+<div><label for="pj">Phép chiếu</label><select id="pj"><option value="n">Không cải chính</option><option value="g">Gauss (k0 = 1)</option><option value="u3">UTM 3° (0.9999)</option><option value="u6">UTM 6° (0.9996)</option></select></div>
+</div>
+<p><label class="chk"><input type="checkbox" id="cc"> Cải chính góc theo phép chiếu</label></p>
+<div class="bar"><button class="main" id="go">Bình sai</button><button id="ex">Nạp ví dụ</button><button id="cl">Xoá hết</button></div>
+</section>
+
+<section id="res"></section>
+</main>
+<script>
+const $=i=>document.getElementById(i),PI=Math.PI,RHO=206265,R1=6371110,R2=6371000;
+const num=s=>{const v=parseFloat(String(s).replace(',','.'));if(isNaN(v))throw Error('Số không hợp lệ: '+s);return v};
+const rows=t=>t.split('\n').map(l=>l.trim()).filter(l=>l&&l[0]!=='#').map(l=>l.split(/[\s;]+/));
+const azm=(dx,dy)=>{let a=Math.atan2(dy,dx);return a<0?a+2*PI:a};
+const wrap=s=>{while(s>648000)s-=1296000;while(s<=-648000)s+=1296000;return s};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function dms(s,d){const f=Math.pow(10,d);let t=Math.round(Math.abs(s)*f);const D=Math.floor(t/(3600*f));t-=D*3600*f;const M=Math.floor(t/(60*f));t-=M*60*f;return(s<0?'-':'')+D+'° '+String(M).padStart(2,'0')+"' "+(t/f).toFixed(d).padStart(d?3+d:2,'0')+'"'}
+function inv(M){const n=M.length,a=M.map((r,i)=>{const x=new Float64Array(2*n);x.set(r);x[n+i]=1;return x});
+ for(let i=0;i<n;i++){let p=i;for(let k=i+1;k<n;k++)if(Math.abs(a[k][i])>Math.abs(a[p][i]))p=k;
+  if(Math.abs(a[p][i])<1e-9)throw Error('Ma trận chuẩn suy biến: lưới thiếu liên kết hoặc thiếu điểm khống chế.');
+  [a[i],a[p]]=[a[p],a[i]];const d=a[i][i];for(let j=0;j<2*n;j++)a[i][j]/=d;
+  for(let k=0;k<n;k++)if(k!==i){const f=a[k][i];if(f)for(let j=i;j<2*n;j++)a[k][j]-=f*a[i][j]}}
+ return a.map(r=>Array.from(r.slice(n)))}
+
+function read(){
+ const need=(r,k,w)=>{for(let i=0;i<k;i++)if(!r[i])throw Error(w+' thiếu số liệu: '+r.join(' '))};
+ const ctl=G('c').map(r=>{need(r,3,'Điểm gốc');return{n:r[0],x:num(r[1]),y:num(r[2])}});
+ const ang=G('g').map(r=>{need(r,4,'Góc đo');return{t:r[0],g:r[1],p:r[2],s:num(r[3])*3600+num(r[4]||0)*60+num(r[5]||0)}});
+ const dis=G('d').map(r=>{need(r,3,'Cạnh đo');return{a:r[0],b:r[1],s:num(r[2])}});
+ const apx=G('x').map(r=>{need(r,3,'Toạ độ gần đúng');return{n:r[0],x:num(r[1]),y:num(r[2])}});
+ const P={a:num($('pa').value),b:num($('pb').value),g:num($('pg').value),h:num($('ph').value||0),pj:$('pj').value,cc:$('cc').checked,pr:$('pn').value.trim()};
+ if(!ang.length&&!dis.length)throw Error('Chưa có số liệu đo.');
+ if(!(P.g>0))throw Error('Chưa nhập sai số đo góc.');
+ if(!(P.a+P.b>0))throw Error('Chưa nhập sai số đo cạnh (a, b).');
+ if(!ctl.length)throw Error('Chưa có điểm gốc.');
+ return{ctl,ang,dis,apx,P}}
+
+function solve(I){
+ const P=I.P,ctl=new Map(I.ctl.map(c=>[c.n,c])),nm=[],id=new Map();
+ const add=x=>{if(!ctl.has(x)&&!id.has(x)){id.set(x,nm.length);nm.push(x)}};
+ I.ang.forEach(a=>{add(a.t);add(a.g);add(a.p)});I.dis.forEach(d=>{add(d.a);add(d.b)});
+ const n=nm.length;if(!n)throw Error('Không có điểm mới cần bình sai.');
+ I.ctl.forEach(c=>{id.set(c.n,nm.length);nm.push(c.n)});
+ const T=nm.length,X=new Array(T).fill(NaN),Y=new Array(T).fill(NaN);
+ I.ctl.forEach(c=>{const i=id.get(c.n);X[i]=c.x;Y[i]=c.y});
+ I.apx.forEach(c=>{const i=id.get(c.n);if(i!==undefined&&i<n){X[i]=c.x;Y[i]=c.y}});
+ const A=I.ang.map(a=>({t:id.get(a.t),g:id.get(a.g),p:id.get(a.p),s:a.s,s0:a.s,c:0}));
+ const D=I.dis.map(d=>({a:id.get(d.a),b:id.get(d.b),s:d.s,s0:d.s,e:0,k:0}));
+ const dm=new Map();D.forEach(d=>dm.set(d.a<d.b?d.a+'_'+d.b:d.b+'_'+d.a,d.s));
+ const dist=(a,b)=>dm.get(a<b?a+'_'+b:b+'_'+a),kn=i=>!isNaN(X[i]);
+ const angErr=()=>A.reduce((e,a)=>kn(a.t)&&kn(a.g)&&kn(a.p)?e+Math.abs(wrap((azm(X[a.p]-X[a.g],Y[a.p]-Y[a.g])-azm(X[a.t]-X[a.g],Y[a.t]-Y[a.g]))*648000/PI-a.s)):e,0);
+ /* toạ độ gần đúng: (1) lan truyền theo góc+cạnh, (2) giao hội cạnh, (3) khung cục bộ với phương vị giả định rồi xoay về điểm gốc */
+ const step=(x,y,known)=>{let any=false;
+  for(let ch=true,it=0;ch&&it<2000;it++){ch=false;
+   for(const a of A){if(!known(a.g))continue;const r=a.s*PI/648000;
+    if(known(a.t)&&!known(a.p)){const s=dist(a.g,a.p);if(s){const z=azm(x[a.t]-x[a.g],y[a.t]-y[a.g])+r;x[a.p]=x[a.g]+s*Math.cos(z);y[a.p]=y[a.g]+s*Math.sin(z);ch=any=true}}
+    else if(known(a.p)&&!known(a.t)){const s=dist(a.g,a.t);if(s){const z=azm(x[a.p]-x[a.g],y[a.p]-y[a.g])-r;x[a.t]=x[a.g]+s*Math.cos(z);y[a.t]=y[a.g]+s*Math.sin(z);ch=any=true}}}}
+  return any};
+ const inter=()=>{for(let u=0;u<n;u++){if(kn(u))continue;const ks=[];
+   D.forEach(d=>{const o=d.a===u?d.b:d.b===u?d.a:-1;if(o>=0&&kn(o))ks.push([o,d.s])});
+   if(ks.length<2)continue;const[[p,sp],[q,sq]]=ks,dx=X[q]-X[p],dy=Y[q]-Y[p],d=Math.hypot(dx,dy);if(!d)continue;
+   const aa=(sp*sp-sq*sq+d*d)/(2*d),h=Math.sqrt(Math.max(0,sp*sp-aa*aa)),bx=X[p]+aa*dx/d,by=Y[p]+aa*dy/d;
+   const c=[[bx-h*dy/d,by+h*dx/d],[bx+h*dy/d,by-h*dx/d]];let best=0,be=1e99;
+   c.forEach((z,k)=>{X[u]=z[0];Y[u]=z[1];const e=angErr();if(e<be){be=e;best=k}});
+   X[u]=c[best][0];Y[u]=c[best][1];return true}return false};
+ const loc=()=>{for(const d of D){let k,u;if(kn(d.a)&&!kn(d.b)){k=d.a;u=d.b}else if(kn(d.b)&&!kn(d.a)){k=d.b;u=d.a}else continue;
+   const lx=new Array(T).fill(NaN),ly=new Array(T).fill(NaN);lx[k]=X[k];ly[k]=Y[k];lx[u]=X[k]+d.s;ly[u]=Y[k];
+   step(lx,ly,i=>!isNaN(lx[i]));
+   let k2=-1,bd=0;for(let i=0;i<T;i++)if(i!==k&&kn(i)&&!isNaN(lx[i])){const e=Math.hypot(lx[i]-lx[k],ly[i]-ly[k]);if(e>bd){bd=e;k2=i}}
+   if(k2<0)continue;
+   const th=azm(X[k2]-X[k],Y[k2]-Y[k])-azm(lx[k2]-lx[k],ly[k2]-ly[k]),c=Math.cos(th),s=Math.sin(th);let ok=false;
+   for(let i=0;i<n;i++)if(!kn(i)&&!isNaN(lx[i])){const dx=lx[i]-lx[k],dy=ly[i]-ly[k];X[i]=X[k]+dx*c-dy*s;Y[i]=Y[k]+dx*s+dy*c;ok=true}
+   if(ok)return true}return false};
+ for(let g=0;g<500;g++){if(!nm.slice(0,n).some((_,i)=>!kn(i)))break;if(step(X,Y,kn)||inter()||loc())continue;break}
+ const bad=nm.slice(0,n).filter((_,i)=>!kn(i));
+ if(bad.length)throw Error('Không tự tính được toạ độ gần đúng cho: '+bad.join(', ')+'. Các điểm này chưa nối được tới ít nhất 2 điểm gốc qua góc và cạnh đo; hãy kiểm tra tên điểm hoặc nhập toạ độ gần đúng.');
+ const nu=2*n,m=A.length+D.length;
+ if(m<=nu)throw Error('Số trị đo ('+m+') chưa vượt số ẩn ('+nu+'): cần thêm góc/cạnh đo.');
+ let Q,V,s0;
+ function adj(){
+  for(let it=0;it<40;it++){
+   const R=[],L=[],W=[];
+   A.forEach(a=>{const tx=X[a.t]-X[a.g],ty=Y[a.t]-Y[a.g],px=X[a.p]-X[a.g],py=Y[a.p]-Y[a.g],st=Math.hypot(tx,ty),sp=Math.hypot(px,py),zt=azm(tx,ty),zp=azm(px,py);
+    const At=RHO*Math.sin(zt)/st,Bt=-RHO*Math.cos(zt)/st,Ap=RHO*Math.sin(zp)/sp,Bp=-RHO*Math.cos(zp)/sp,r=[];
+    if(a.p<n)r.push([2*a.p,-Ap],[2*a.p+1,-Bp]);if(a.t<n)r.push([2*a.t,At],[2*a.t+1,Bt]);if(a.g<n)r.push([2*a.g,Ap-At],[2*a.g+1,Bp-Bt]);
+    R.push(r);L.push(wrap((zp-zt)*648000/PI-a.s));W.push(1)});
+   D.forEach(d=>{const dx=X[d.b]-X[d.a],dy=Y[d.b]-Y[d.a],s=Math.hypot(dx,dy),c=dx/s,sn=dy/s,r=[];
+    if(d.a<n)r.push([2*d.a,-c],[2*d.a+1,-sn]);if(d.b<n)r.push([2*d.b,c],[2*d.b+1,sn]);
+    const mc=P.a+P.b*d.s/1000;R.push(r);L.push(s-d.s);W.push(Math.pow(1000*P.g/mc,2))});
+   const N=Array.from({length:nu},()=>new Float64Array(nu)),bv=new Float64Array(nu);
+   R.forEach((r,i)=>r.forEach(([c1,v1])=>{bv[c1]+=W[i]*v1*L[i];r.forEach(([c2,v2])=>{N[c1][c2]+=W[i]*v1*v2})}));
+   Q=inv(N);const dl=new Float64Array(nu);
+   for(let i=0;i<nu;i++)for(let j=0;j<nu;j++)dl[i]-=Q[i][j]*bv[j];
+   let mx=0;for(let i=0;i<n;i++){X[i]+=dl[2*i];Y[i]+=dl[2*i+1];mx=Math.max(mx,Math.abs(dl[2*i]),Math.abs(dl[2*i+1]))}
+   let pv=0;V=R.map((r,i)=>{let v=L[i];r.forEach(([c,val])=>v+=val*dl[c]);pv+=W[i]*v*v;return v});
+   s0=Math.sqrt(pv/(m-nu));if(mx<1e-7)return}
+  throw Error('Bình sai không hội tụ: kiểm tra lại số liệu (có thể có sai số thô hoặc nhầm tên điểm).')}
+ adj();
+ const k0={g:1,u3:.9999,u6:.9996}[P.pj];
+ if(P.h||k0||P.cc){
+  D.forEach(d=>{d.e=-d.s*P.h/R1;d.s+=d.e;
+   if(k0){const y=(Y[d.a]+Y[d.b])/2-5e5,q=y*y/R1/R1/2;d.k=P.pj==='g'?q*d.s:(k0+q-1)*d.s;d.s+=d.k}});
+  if(P.cc&&k0)A.forEach(a=>{const Yi=Y[a.g]-5e5,Yk=Y[a.t]-5e5,Yj=Y[a.p]-5e5,Xi=X[a.g],Xk=X[a.t],Xj=X[a.p];let rk,rj;
+   if(P.pj==='g'){rk=(Xk-Xi)/(6*R2*R2)*(2*Yi+Yk)*RHO;rj=(Xj-Xi)/(6*R2*R2)*(2*Yi+Yj)*RHO}
+   else{const c=RHO/(4*R2*R2*k0*k0);rk=c*(Yi+Yk)*(Xi-Xk);rj=c*(Yi+Yj)*(Xi-Xj)}
+   a.c=rj-rk;a.s+=a.c});
+  adj()}
+ const qf=(idx,F)=>{let q=0;idx.forEach((i,a)=>idx.forEach((j,b)=>q+=F[a]*F[b]*Q[i][j]));return q};
+ const pts=[];let mpm=0,mpn='';
+ for(let i=0;i<n;i++){const Mx=s0*Math.sqrt(Q[2*i][2*i]),My=s0*Math.sqrt(Q[2*i+1][2*i+1]),Mp=Math.hypot(Mx,My);pts.push({n:nm[i],x:X[i],y:Y[i],Mx,My,Mp});if(Mp>mpm){mpm=Mp;mpn=nm[i]}}
+ let msMin=1e99,msN='',maMax=0,maN='';
+ const ds=D.map((d,i)=>{const dx=X[d.b]-X[d.a],dy=Y[d.b]-Y[d.a],s=Math.hypot(dx,dy),z=azm(dx,dy),c=dx/s,sn=dy/s,idx=[],Fs=[],Fa=[];
+  if(d.a<n){idx.push(2*d.a,2*d.a+1);Fs.push(-c,-sn);Fa.push(RHO*sn/s,-RHO*c/s)}
+  if(d.b<n){idx.push(2*d.b,2*d.b+1);Fs.push(c,sn);Fa.push(-RHO*sn/s,RHO*c/s)}
+  let ms=0,ma=0;if(idx.length){ms=s0*Math.sqrt(qf(idx,Fs));ma=s0*Math.sqrt(qf(idx,Fa))}
+  const nmab=nm[d.a]+' - '+nm[d.b];
+  if(ms>0&&s/ms<msMin){msMin=s/ms;msN=nmab}if(ma>maMax){maMax=ma;maN=nmab}
+  return{n:nmab,na:nm[d.a],nb:nm[d.b],s0:d.s0,e:d.e,k:d.k,v:V[A.length+i],s,ms,z,ma}});
+ const as=A.map((a,i)=>({t:nm[a.t],g:nm[a.g],p:nm[a.p],s0:a.s0,s:a.s,c:a.c,v:V[i],b:a.s+V[i]}));
+ return{nm,n,X,Y,A,D,pts,ds,as,s0,mpm,mpn,msMin,msN,maMax,maN,m,nu,I}}
+
+function dd(sec,dec,trim){const f=Math.pow(10,dec);let t=Math.round(Math.abs(sec)*f);const D=Math.floor(t/(3600*f));t-=D*3600*f;const M=Math.floor(t/(60*f));t-=M*60*f;let x=(t/f).toFixed(dec);if(trim)x=String(parseFloat(x));return(sec<0?'-':'')+D+' '+M+' '+x}
+function show(S){
+ const f=(v,d)=>v.toFixed(d),P=S.I.P,nj=P.pj!=='n';
+ const T=(h,b,w)=>'<div class="sc"><table'+(w?' class="w"':'')+'><tr>'+h.map(x=>x.t?'<th colspan="'+x.c+'">'+x.t+'</th>':'<th>'+x+'</th>').join('')+'</tr>'+b.map(r=>'<tr>'+r.map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</table></div>';
+ const cj={n:'None',g:'1-Gauss',u3:'0.9999',u6:'0.9996'}[P.pj],L=(a,b)=>'<td class="l">'+a+'</td><td>'+b+'</td>';
+ let h='<div id="rep" class="rep"><h1>BÌNH SAI LƯỚI MẶT BẰNG</h1><p class="ln"><b><i>Công trình</i></b>: '+esc(P.pr)+'</p><p class="ln"><b><u>Thông số lưới</u></b></p>'+
+  '<div class="sc"><table><tr>'+L('Số điểm gốc:',S.I.ctl.length)+L('Số cải chính:',cj)+'</tr><tr>'+L('Số điểm mới:',S.n)+L('Sai số đo góc:',P.g+'"')+'</tr><tr>'+L('Số cạnh đo:',S.D.length)+L('Sai số đo cạnh:','('+P.a+'+'+P.b+'*D km)mm')+'</tr><tr>'+L('Số góc đo:',S.A.length)+L('Phương vị đo:',0)+'</tr></table></div>';
+ h+='<h3>TỌA ĐỘ GỐC</h3>'+T(['Tên điểm','Tọa độ X','Tọa độ Y'],S.I.ctl.map(c=>[c.n,f(c.x,3),f(c.y,3)]));
+ h+='<h3>CẠNH SAU BÌNH SAI</h3>'+T([{t:'Tên cạnh',c:2},'K Cách','Ellip','Số CC','Shc','Cạnh bs'],S.ds.map(d=>[d.na,d.nb,f(d.s0,3),P.h?f(d.e,3):'',nj?f(d.k,3):'',f(d.v,3),f(d.s,3)]),1);
+ h+='<h3>GÓC SAU BÌNH SAI</h3>'+T(['Trái','Giữa','Phải','Góc trước bs','C.c mp (")','Shc','Góc sau bs'],S.as.map(a=>[a.t,a.g,a.p,dd(a.s0,2,1),f(a.c,2),f(a.v,2),dd(a.b,2,0)]),1);
+ h+='<h3>BẢNG TƯƠNG HỖ VỊ TRÍ ĐIỂM</h3>'+T([{t:'Tên cạnh',c:2},'Ms','Ms/S','Phương vị','Ma(")'],S.ds.map(d=>[d.na,d.nb,f(d.ms,3),d.ms>0?'1/'+Math.round(d.s/d.ms):'-',dd(d.z*648000/PI,1,0),f(d.ma,1)]),1);
+ h+='<h3>TỌA ĐỘ BÌNH SAI</h3>'+T(['Tên điểm','Tọa độ X','Tọa độ Y','Mx','My','Mp'],S.pts.map(p=>[p.n,f(p.x,3),f(p.y,3),f(p.Mx,3),f(p.My,3),f(p.Mp,3)]),1);
+ h+='<p class="ln">-Sai số trung phương trọng số đơn vị: '+f(S.s0,1)+'"</p><p class="ln">-Điểm yếu nhất: '+esc(S.mpn)+' Mp= '+f(S.mpm,3)+'m</p>'+
+  (S.msN?'<p class="ln">-Chiều dài cạnh yếu: ('+esc(S.msN)+') Ms/S = 1/ '+Math.round(S.msMin)+'</p>':'')+(S.maN?'<p class="ln">-Phương vị cạnh yếu: ('+esc(S.maN)+') Ma = '+f(S.maMax,1)+'"</p>':'')+'</div>';
+ const csv=['Diem\tX\tY\tMx\tMy\tMp'].concat(S.pts.map(p=>[p.n,f(p.x,3),f(p.y,3),f(p.Mx,3),f(p.My,3),f(p.Mp,3)].join('\t'))).join('\n');
+ h+='<section class="card noprint"><div class="bar"><button class="main" data-r="1">Sao chép báo cáo (dán vào Excel/Word)</button><button data-p="1">In / Lưu PDF</button><button data-w="1">Xuất Word (.doc)</button></div>'+
+  '<h2>Xuất toạ độ (dán vào Excel)</h2><textarea id="o1" readonly>'+esc(csv)+'</textarea><p class="bar"><button data-c="o1">Sao chép toạ độ</button></p>'+
+  '<p class="hint">Bậc tự do: '+(S.m-S.nu)+'.</p></section>';
+ $('res').innerHTML=h;
+ const R=$('res');
+ R.querySelectorAll('button[data-c]').forEach(b=>b.onclick=()=>{const t=$(b.dataset.c);t.select();try{navigator.clipboard.writeText(t.value).catch(()=>document.execCommand('copy'))}catch(e){document.execCommand('copy')}});
+ R.querySelector('[data-r]').onclick=()=>{const r=document.createRange();r.selectNode($('rep'));const g=getSelection();g.removeAllRanges();g.addRange(r);try{document.execCommand('copy')}catch(e){}g.removeAllRanges()};
+ R.querySelector('[data-p]').onclick=()=>window.print();R.querySelector('[data-w]').onclick=wordDoc;
+ R.scrollIntoView({behavior:'smooth'})}
+
+function wordDoc(){const css='body{font-family:"Times New Roman";font-size:12pt}h1{text-align:center;font-size:18pt}h3{text-align:center;font-size:12pt}table{border-collapse:collapse;margin:0 auto}table.w{width:100%}td,th{border:1px solid #000;padding:2px 6px;text-align:center;font-weight:normal}td.l{text-align:left}p{margin:2pt 0}';
+ const html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Bình sai</title><style>'+css+'</style></head><body>'+$('rep').innerHTML+'</body></html>';
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff',html],{type:'application/msword'}));a.download='BinhSaiLuoiMatBang.doc';document.body.appendChild(a);a.click();a.remove()}
+const GC={c:{t:'Điểm gốc',h:['Tên điểm','X','Y'],n:6},g:{t:'Nhập góc đo',h:['Trái','Giữa','Phải','Độ','Phút','Giây'],n:10},d:{t:'Nhập cạnh đo',h:['Điểm đầu','Điểm cuối','Chiều dài cạnh'],n:10},x:{t:'Toạ độ gần đúng (tuỳ chọn)',h:['Tên điểm','X','Y'],n:4}};
+const NUMC={c:[1,2],g:[3,4,5],d:[2],x:[1,2]};
+const rowH=(id,v)=>'<tr>'+GC[id].h.map((_,j)=>'<td><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false"'+(NUMC[id].includes(j)?' inputmode="decimal"':'')+' value="'+esc(v&&v[j]||'').replace(/"/g,'&quot;')+'"></td>').join('')+'</tr>';
+function fill(id,data){const n=Math.max(GC[id].n,data.length+2);let b='';for(let i=0;i<n;i++)b+=rowH(id,data[i]);$(id).querySelector('tbody').innerHTML=b}
+function G(id){return[...$(id).querySelectorAll('tbody tr')].map(tr=>[...tr.querySelectorAll('input')].map(i=>i.value.trim())).filter(r=>r.some(v=>v!==''))}
+function build(id){const c=GC[id],cols=c.h.length;
+ $(id).innerHTML='<div class="sc"><table class="gr"><thead><tr><th class="tt" colspan="'+cols+'">'+c.t+'</th></tr><tr>'+c.h.map(x=>'<th class="hd">'+x+'</th>').join('')+'</tr></thead><tbody></tbody></table></div><div class="bar"><button type="button">+ Thêm 5 dòng</button></div>';
+ fill(id,[]);const T=$(id).querySelector('table'),B=()=>T.querySelector('tbody');
+ $(id).querySelector('button').onclick=()=>B().insertAdjacentHTML('beforeend',rowH(id).repeat(5));
+ T.addEventListener('paste',e=>{const t=(e.clipboardData||window.clipboardData).getData('text');if(!t||e.target.tagName!=='INPUT')return;e.preventDefault();
+  const a=[...T.querySelectorAll('input')].indexOf(e.target),r0=Math.floor(a/cols),c0=a%cols,L=t.replace(/\r/g,'').split('\n');if(L.length&&L[L.length-1]==='')L.pop();
+  L.forEach((ln,i)=>{const cells=ln.indexOf('\t')>=0?ln.split('\t'):ln.trim().split(/\s+/);
+   let tr=B().querySelectorAll('tr')[r0+i];if(!tr){B().insertAdjacentHTML('beforeend',rowH(id));tr=B().querySelectorAll('tr')[r0+i]}
+   const inp=tr.querySelectorAll('input');cells.forEach((v,j)=>{if(c0+j<cols)inp[c0+j].value=v.trim()})})});
+ T.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='INPUT')return;e.preventDefault();
+  const a=[...T.querySelectorAll('input')].indexOf(e.target);if(a+cols>=T.querySelectorAll('input').length)B().insertAdjacentHTML('beforeend',rowH(id));
+  T.querySelectorAll('input')[a+cols].focus()})}
+['c','g','d','x'].forEach(build);
+$('go').onclick=()=>{try{show(solve(read()))}catch(e){$('res').innerHTML='<section class="card"><p class="err">'+esc(e.message)+'</p></section>'}};
+$('cl').onclick=()=>{['c','g','d','x'].forEach(i=>fill(i,[]));$('res').innerHTML=''};
+$('ex').onclick=()=>{fill('c',[['A','1000.000','1000.000'],['B','1000.000','1100.000']]);
+ fill('g',[['P','A','B','60','0','5'],['A','B','P','59','59','58']]);fill('d',[['A','P','100.003'],['B','P','99.998']]);fill('x',[]);
+ $('pa').value=2;$('pb').value=2;$('pg').value=5;$('ph').value=0;$('pj').value='n';$('cc').checked=false;$('res').innerHTML=''};
+</script></body></html>
