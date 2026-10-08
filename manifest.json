@@ -1,0 +1,17 @@
+{
+  "name": "Bình sai lưới mặt bằng",
+  "short_name": "BinhSaiLuoi",
+  "description": "Ứng dụng bình sai lưới trắc địa mặt bằng",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#00796b",
+  "icons": [
+    {
+      "src": "https://github.io",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
